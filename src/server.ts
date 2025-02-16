@@ -8,6 +8,12 @@ const app = express()
 const PORT = process.env.PORT || 3000
 
 
+// Database connection 
+mongoose
+  .connect(process.env.MONGODB_URI as string)
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.error("MongoDB connection error:", err))
+
 // Route Endpoint 
 app.use("/", (_req, res) => {
     res.send("Server is ready for requesting")
