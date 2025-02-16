@@ -4,6 +4,7 @@ import mongoose from "mongoose"
 import cors from "cors"
 import authRoutes from "./routes/authRoutes"
 import userRoutes from "./routes/userRoutes"
+import adminRoutes from "./routes/adminRoutes"
 
 dotenv.config()
 
@@ -28,6 +29,7 @@ mongoose
 // Server Entry Point 
 app.use("/api/auth", authRoutes)
 app.use("/api/user", userRoutes)
+app.use("/api/admin", adminRoutes)
 
 // Port listen with 
 app.listen(PORT, () => {
