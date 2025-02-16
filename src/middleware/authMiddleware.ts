@@ -26,7 +26,7 @@ export const protect = async (req: AuthRequest, res: Response, next: NextFunctio
     }
 
     req.user = user
-    next()
+    return next()
   } catch (error) {
     return res.status(401).json({ success: false, message: "Invalid token" })
   }
@@ -37,7 +37,7 @@ export const authorize = (...roles: string[]) => {
     if (!req.user || !roles.includes(req.user.role)) {
       return res.status(403).json({ success: false, message: "Forbidden: Insufficient permissions" })
     }
-    next()
+    return next()
   }
 }
 

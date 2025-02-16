@@ -42,4 +42,33 @@ export const register = async (req: Request, res: Response) => {
     }
 }
 
+export const login = async (req: Request, res: Response) => {
+    try {
+      const { email, password } = req.body
+  
+      const user = await User.findOne({ email })
+      if (!user || !(await user.comparePassword(password))) {
+        return res.status(401).json({ success: false, message: "Invalid email or password" })
+      }
+  
+      const token = generateToken(user)
+  
+      return res.json({
+        success: true,
+        message: "Login successful",
+        data: {
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+          token,
+        },
+      })
+    } catch (error) {
+      return res.status(500).json({ success: false, message: "Server error", error })
+    }
+}
+  
+  
+
 
