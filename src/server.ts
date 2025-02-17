@@ -6,6 +6,7 @@ import authRoutes from "./routes/authRoutes"
 import userRoutes from "./routes/userRoutes"
 import adminRoutes from "./routes/adminRoutes"
 import trainerRoutes from "./routes/trainerRoutes"
+import traineeRoutes from "./routes/traineeRoutes"
 
 dotenv.config()
 
@@ -32,6 +33,7 @@ app.use("/api/auth", authRoutes)
 app.use("/api/user", userRoutes)
 app.use("/api/admin", adminRoutes)
 app.use("/api/trainer", trainerRoutes)
+app.use("/api/trainee", traineeRoutes)
 
 // Port listen with 
 app.listen(PORT, () => {
