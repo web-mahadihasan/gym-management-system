@@ -12,6 +12,7 @@ The **Gym Management System Backend** is designed to handle gym operations, incl
 
 ## Technology Stack
 The project is built using the following technologies:
+
 - **TypeScript**
 - **Node.js**
 - **Express.js**
@@ -20,6 +21,7 @@ The project is built using the following technologies:
 - **JSON Web Tokens (JWT)** for authentication
 - **bcryptjs** for password hashing
 - **date-fns** for date manipulation
+
 
 ## API Endpoints
 
