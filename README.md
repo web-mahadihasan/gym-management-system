@@ -7,8 +7,6 @@ Here's your complete `README.md` file in Markdown format:
 The **Gym Management System Backend** is designed to handle gym operations, including user authentication, class scheduling, and booking functionalities. It provides RESTful API endpoints to facilitate seamless interaction between admins, trainers, and trainees while enforcing business rules for effective management.
 
 ## Relation Diagram
-![Gym Management System Relation Diagram](https://example.com/gym-management-relation-diagram.png)  
-*Note: Replace the above URL with the actual link to your relation diagram image.*
 
 ## Technology Stack
 The project is built using the following technologies:
@@ -29,7 +27,7 @@ The project is built using the following technologies:
 - `POST /api/auth/register` - Register a new user
 - `POST /api/auth/login` - User login
 
-### User Routes
+### Normal Routes
 - `GET /api/user` - Get current user profile
 - `PUT /api/user/update-profile` - Update user profile
 
@@ -37,6 +35,8 @@ The project is built using the following technologies:
 - `POST /api/admin/create-trainer` - Create a new trainer
 - `GET /api/admin/trainers` - Get all trainers
 - `POST /api/admin/create-class-schedule` - Create a new class schedule
+- `GET /api/admin/all-schedules` - Create a new class schedule
+- `DELETE /api/admin/remove-trainer/:trainerId` - Create a new class schedule
 
 ### Trainer Routes
 - `GET /api/trainer/schedules` - Get trainer's schedules
@@ -45,6 +45,7 @@ The project is built using the following technologies:
 - `GET /api/trainee/class-schedules` - Get available class schedules
 - `POST /api/trainee/book-class` - Book a class
 - `DELETE /api/trainee/cancel-booking/:bookingId` - Cancel a booking
+- `PUT /api/user/update-profile` - Update user profile
 
 ## Database Schema
 
