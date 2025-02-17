@@ -24,9 +24,9 @@ mongoose
   .catch((err) => console.error("MongoDB connection error:", err))
 
 // Route Endpoint 
-// app.use("/", (_req, res) => {
-//     res.send("Server is ready for requesting")
-// })
+app.get("/", (_req, res) => {
+    res.send("Server is ready for requesting")
+})
 
 // Server Entry Point 
 app.use("/api/auth", authRoutes)
@@ -39,4 +39,5 @@ app.use("/api/trainee", traineeRoutes)
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
 })
-  
+
+export default app;

@@ -72,3 +72,30 @@ export const getClassSchedules = async (req: Request, res: Response) => {
       res.status(500).json({ success: false, message: "Server error", error })
     }
 }
+
+// Cancel Booking class 
+export const cancelBooking = async (req: Request, res: Response) => {
+    try {
+      const { bookingId } = req.params
+  
+      const booking = await Booking.findOne({ _id: bookingId })
+      if (!booking) {
+        return res.status(404).json({ success: false, message: "Booking not found" })
+      }
+  
+      const schedule = await ClassSchedule.findById(booking.classSchedule)
+      if (schedule) {
+        schedule.currentBookings -= 1
+        await schedule.save()
+      }
+  
+      await booking.remove()
+  
+      return res.json({
+        success: true,
+        message: "Booking cancelled successfully",
+      })
+    } catch (error) {
+      return res.status(500).json({ success: false, message: "Server error", error })
+    }
+}
