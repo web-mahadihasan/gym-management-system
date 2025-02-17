@@ -6,11 +6,7 @@ export const getTrainerSchedules = async (req: Request, res: Response) => {
     const trainerId = req.params.id
     const schedules = await ClassSchedule.find({ trainer: trainerId })
 
-    res.json({
-      success: true,
-      message: "Trainer schedules retrieved successfully",
-      data: schedules,
-    })
+    res.json(schedules)
   } catch (error) {
     res.status(500).json({ success: false, message: "Server error", error })
   }

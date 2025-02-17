@@ -5,23 +5,26 @@ import { AuthRequest } from "../middleware/authMiddleware"
 export const updateProfile = async (req: Request, res: Response) => {
   try {
     const userId = req.params.id
-    const { name, password } = req.body
+    const { name, currentPassword, newPassword } = req.body
 
     const user = await User.findById(userId)
     if (!user) {
       return res.status(404).json({ success: false, message: "User not found" })
     }
 
-    // if (email && email !== user.email) {
-    //   const existingUser = await User.findOne({ email })
-    //   if (existingUser) {
-    //     return res.status(400).json({ success: false, message: "Email already in use" })
-    //   }
-    // }
-
-    user.name = name || user.name
-    user.password = password || user.password
-
+    // Update name 
+    if (name) {
+        user.name = name;
+    }
+    
+    // Update password
+    if (currentPassword && newPassword) {
+        const isMatch = await user.comparePassword(currentPassword)
+        if (!isMatch) {
+          return res.status(400).json({ success: false, message: "Current password is incorrect" })
+        }
+        user.password = newPassword
+    }
     await user.save()
 
     return res.json({
