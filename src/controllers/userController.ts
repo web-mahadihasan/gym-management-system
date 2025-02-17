@@ -90,8 +90,31 @@ export const getAdmin = async (req: Request, res: Response) => {
     }
 }
 
+// Check for trainer 
+export const getTrainer = async (req: Request, res: Response) => {
+    try {
+    const email = req.params.email
+    const filter = {email: email}
+    const user = await User.findOne(filter)
+    
+    if (!user) {
+        return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    let trainer = false;
+    if(user){
+        trainer = user?.role === "trainer"
+    }
+
+    return res.send({trainer})
+
+    } catch (error) {
+      return  res.status(500).json({ success: false, message: "Server error", error })  
+    }
+}
+
 export const checkAuth = async (req: AuthRequest, res: Response) => {
     const user = await User.findById(req?.user?.id);
-    const {name, email, role} = user || {}
-    res.json({ name, email, role });
+    const {_id, name, email, role} = user || {}
+    res.json({_id, name, email, role });
 }

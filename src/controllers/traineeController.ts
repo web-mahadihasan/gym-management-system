@@ -29,6 +29,13 @@ export const bookClass = async (req: Request, res: Response) => {
     const booking = await Booking.create({
       trainee: traineeId,
       classSchedule: scheduleId,
+      bookingDate: new Date(),
+      schedule: {
+        Classdate: schedule.date,
+        title: schedule.title,
+        startTime: schedule.startTime,
+        endTime: schedule.endTime,
+      }
     })
 
     schedule.currentBookings += 1
@@ -67,6 +74,23 @@ export const getClassSchedules = async (req: Request, res: Response) => {
         success: true,
         message: "Class schedules retrieved successfully",
         data: schedules,
+      })
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Server error", error })
+    }
+}
+
+
+export const getMyBookings = async (req: Request, res: Response) => {
+    try {
+      const traineeId = req.params.id
+  
+      const myBookings = await Booking.find({ trainee: traineeId }).sort({ "bookingDate": 1 })
+  
+      res.json({
+        success: true,
+        message: "Trainee bookings retrieved successfully",
+        myBookings,
       })
     } catch (error) {
       res.status(500).json({ success: false, message: "Server error", error })
