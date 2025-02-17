@@ -2,6 +2,7 @@ import mongoose, { type Document, Schema } from "mongoose"
 
 export interface IClassSchedule extends Document {
   date: Date
+  title: string
   startTime: string
   endTime: string
   trainer: mongoose.Types.ObjectId
@@ -11,6 +12,7 @@ export interface IClassSchedule extends Document {
 
 const classScheduleSchema = new Schema<IClassSchedule>({
   date: { type: Date, required: true },
+  title: { type: String, required: true },
   startTime: { type: String, required: true },
   endTime: { type: String, required: true },
   trainer: { type: Schema.Types.ObjectId, ref: "User", required: true },
