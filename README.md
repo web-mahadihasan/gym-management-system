@@ -80,8 +80,13 @@ The project is built using the following technologies:
 ## Admin Credentials
 Use the following credentials to log in as an admin:
 ```
-Email: admin@example.com
-Password: admin123
+Email: mahadi.admin@gmail.com
+Password: Mm123456
+```
+```
+Trainer 
+Email: trainer@gmail.com
+Password: Mm123456
 ```
 *Note: Update with actual credentials.*
 
