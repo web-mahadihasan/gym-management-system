@@ -5,7 +5,7 @@ import { protect } from "../middleware/authMiddleware"
 
 const userRoutes = express.Router()
 
-// router.use(protect)
+userRoutes.use(protect)
 
 userRoutes.put("/update-profile/:id", updateProfile)
 
